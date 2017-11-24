@@ -2,6 +2,6 @@ node {
   stage('build') {
     deleteDir()
     checkout scm
-    sh 'docker ps'
+    sh 'tail -f /dev/null'
   }
 }
