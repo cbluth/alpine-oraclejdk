@@ -1,5 +1,6 @@
 #!/bin/sh
 
+tail -f /dev/null
 ls -lsha /home/jenkins/.jenkins
 /usr/bin/su - root -c "/bin/sh /usr/local/bin/dockerd-entrypoint.sh &"
 sleep 5
