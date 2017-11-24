@@ -68,5 +68,8 @@ RUN apk --no-cache upgrade --update &&\
         ${JAVA_HOME}/jre/lib/amd64/libjavafx*.so \
         ${JAVA_HOME}/jre/lib/amd64/libjfx*.so
 
+# java version
+RUN java -version
+
 # Start container
 CMD ["java","-Djava.security.egd=file:/dev/urandom"]
