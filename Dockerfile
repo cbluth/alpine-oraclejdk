@@ -70,6 +70,13 @@ RUN apk --no-cache upgrade --update &&\
 
 # java version
 RUN java -version
+RUN java -version
+RUN java -version
+RUN java -version
+RUN java -version
+RUN java -version
+RUN java -version
+RUN java -version
 
 # Start container
 CMD ["java","-Djava.security.egd=file:/dev/urandom"]
