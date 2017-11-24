@@ -2,6 +2,6 @@ node('docker') {
   stage('build') {
     deleteDir()
     checkout scm
-    sh 'docker ps'
+    sh 'docker build -f ./Dockerfile ./'
   }
 }
