@@ -26,7 +26,7 @@ ENV JAVA_ALPINE_VERSION 8.131.11-r2
 RUN set -x \
 	&& apk add --no-cache \
 		curl sudo git openjdk8="$JAVA_ALPINE_VERSION" \
-  && apk add --no-cache git \
+  && apk add --no-cache git busybox-suid \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
 ###
