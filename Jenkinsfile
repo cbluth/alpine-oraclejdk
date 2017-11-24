@@ -1,7 +1,7 @@
-node('default') {
-  stage('Build Container') {
+node {
+  stage('build') {
     deleteDir()
     checkout scm
-    sh 'echo HI'
+    sh 'docker ps'
   }
 }
