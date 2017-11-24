@@ -14,7 +14,9 @@ RUN { \
 		echo; \
 		echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
 	} > /usr/local/bin/docker-java-home \
-	&& chmod +x /usr/local/bin/docker-java-home
+	&& chmod +x /usr/local/bin/docker-java-home \
+  && mkdir -p /etc/sudoers.d/ \
+  && echo "jenkins ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/jenkins
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
@@ -23,14 +25,13 @@ ENV JAVA_ALPINE_VERSION 8.131.11-r2
 
 RUN set -x \
 	&& apk add --no-cache \
-		curl openjdk8="$JAVA_ALPINE_VERSION" \
+		curl sudo openjdk8="$JAVA_ALPINE_VERSION" \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
 ###
 ENV HOME /home/jenkins
 RUN addgroup -g 10000 jenkins
 RUN adduser -g "Jenkins user" -h $HOME -u 10000 -G jenkins -S jenkins
-LABEL Description="This is a base image, which provides the Jenkins agent executable (slave.jar)" Vendor="Jenkins project" Version="3.14"
 
 ARG VERSION=3.14
 ARG AGENT_WORKDIR=/home/jenkins/agent
